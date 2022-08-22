@@ -3,9 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button, Form } from "react-bootstrap";
 // import * as Helper from "./../../helpers/LoginHelper";
 
-function RegisterVendor() {
+function Register() {
   const navigate = useNavigate();
-  const [userForm, setUserForm] = useState({ email: "", username: "", password: "" });
+  const [userForm, setUserForm] = useState({ email: "", username: "", password: "", alamat: "", statusUser: "" });
   const [formError, setFormError] = useState({});
   const [lihatPass, setLihatpass] = useState(false);
 
@@ -64,6 +64,22 @@ function RegisterVendor() {
             </Form.Group>
             <p className="text-danger">{formError.username}</p>
 
+            <Form.Label>
+              <h4>Alamat Anda</h4>
+            </Form.Label>
+
+            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+              <Form.Control as="textarea" rows={5} />
+            </Form.Group>
+
+            <h4>Status Anda</h4>
+            <Form.Select aria-label="Default select example">
+              <option>Pilih Status Anda</option>
+              <option value="Pembeli">Pembeli</option>
+              <option value="Vendor">Vendor</option>
+            </Form.Select>
+            <br></br>
+
             <Form.Group className="mb-3">
               <Form.Label>
                 <h4>Password Anda</h4>
@@ -96,4 +112,4 @@ function RegisterVendor() {
   );
 }
 
-export default RegisterVendor;
+export default Register;

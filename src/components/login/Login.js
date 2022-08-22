@@ -6,7 +6,7 @@ import { Button, Form } from "react-bootstrap";
 // import { LOGIN } from "./../../contexts/ContextConsts";
 // import * as Helper from "./../../helpers/LoginHelper";
 
-function LoginVendor({ from }) {
+function Login({ from }) {
   const navigate = useNavigate();
   const [userForm, setUserForm] = useState({ email: "", password: "" });
   const [formError, setFormError] = useState({});
@@ -84,7 +84,7 @@ function LoginVendor({ from }) {
             <p>
               Belum punya akun?&nbsp;
               <span>
-                <Link to="/vendor-register">Buat baru</Link>
+                <Link to="/register">Buat baru</Link>
               </span>
             </p>
           </div>
@@ -98,4 +98,4 @@ function LoginVendor({ from }) {
   );
 }
 
-export default LoginVendor;
+export default Login;
