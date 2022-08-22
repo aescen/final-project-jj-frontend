@@ -6,7 +6,7 @@ const Layout = ({ children }) => {
                 <div className='col-2'>
                     <Sidebar />
                 </div>
-                <div className='col'>
+                <div className='col-10'>
                     <div>
                         {children}
                     </div>
