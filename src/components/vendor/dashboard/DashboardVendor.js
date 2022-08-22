@@ -1,8 +1,13 @@
 import React from 'react'
-
+import Layout from '../layout/Layout'
+import Dashboard from './Dashboard'
 const DashboardVendor = () => {
   return (
-    <div>DashboardVendor</div>
+
+    <Layout>
+      <Dashboard />
+    </Layout>
+
   )
 }
 
