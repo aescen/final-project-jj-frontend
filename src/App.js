@@ -26,7 +26,7 @@ import DashboardVendor from './components/vendor/dashboard/DashboardVendor';
 import CollectionsVendor from './components/vendor/collections/CollectionsVendor';
 import DesignUpload from './components/vendor/designs/DesignUpload';
 import SalesReport from './components/vendor/sales/SalesReport';
-// baru
+
 function App() {
   return (
     <Router>

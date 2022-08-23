@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Form } from "react-bootstrap";
+// import { AuthContext } from "./../../contexts/AuthContext";
+//import { KeranjangContext, validateKeranjangAPIByUserId } from "./../../contexts/KeranjangContext";
+// import { LOGIN } from "./../../contexts/ContextConsts";
 // import * as Helper from "./../../helpers/LoginHelper";
 
-function RegisterVendor() {
+function Login({ from }) {
   const navigate = useNavigate();
-  const [userForm, setUserForm] = useState({ email: "", username: "", password: "" });
+  const [userForm, setUserForm] = useState({ email: "", password: "" });
   const [formError, setFormError] = useState({});
   const [lihatPass, setLihatpass] = useState(false);
+  // const { dispatch } = useContext(AuthContext);
+  // const { dispatch: dispatchKeranjang } = useContext(KeranjangContext);
 
   const handleChange = (event) => {
     setUserForm({ ...userForm, [event.target.name]: event.target.value });
@@ -23,15 +28,20 @@ function RegisterVendor() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     // setFormError(Helper.validasiForm(userForm));
-    if (userForm.email !== "" && userForm.username !== "" && userForm !== "") {
+    if (userForm.email !== "" && userForm.password !== "") {
       if (Object.keys(formError).length === 0) {
-        // const newUser = await Helper.registerNewUser(userForm);
-        // const user = await Helper.getUserByEmailAndPassword(newUser.email, newUser.password);
+        const userData = { ...userForm };
+        // const user = await Helper.getUserByEmailAndPassword(userData.email, userData.password);
+
         // if (user !== null) {
-        //   alert("Registrasi berhasil!");
-        //   navigate("/login");
+        //   dispatch({
+        //     type: LOGIN,
+        //     payload: user,
+        //   });
+        //   validateKeranjangAPIByUserId(user.id, dispatchKeranjang);
+        //   navigate("/");
         // } else {
-        //   alert("Gagal registrasi!");
+        //   alert("User tidak ditemukan! Silakan daftar dulu.");
         // }
       }
     }
@@ -44,7 +54,7 @@ function RegisterVendor() {
   return (
     <div className="d-flex flex-column vh-100">
       <div className="mt-5">
-        <h1>Daftar akun baru</h1>
+        <h1>Masuk ke akun anda</h1>
         <Form className="mt-5">
           <div className="text-start">
             <hr />
@@ -55,14 +65,6 @@ function RegisterVendor() {
               <Form.Control type="email" placeholder="Masukan Email Anda" name="email" onChange={(ev) => handleChange(ev)} onKeyPress={(ev) => handleKeyPress(ev)} />
             </Form.Group>
             <p className="text-danger">{formError.email}</p>
-
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>
-                <h4>Nama Anda</h4>
-              </Form.Label>
-              <Form.Control type="text" placeholder="Masukan Nama Anda" name="username" onChange={(ev) => handleChange(ev)} onKeyPress={(ev) => handleKeyPress(ev)} />
-            </Form.Group>
-            <p className="text-danger">{formError.username}</p>
 
             <Form.Group className="mb-3">
               <Form.Label>
@@ -80,15 +82,15 @@ function RegisterVendor() {
 
           <div className="text-start">
             <p>
-              Sudah punya akun?&nbsp;
+              Belum punya akun?&nbsp;
               <span>
-                <Link to="/login">Masuk</Link>
+                <Link to="/register">Buat baru</Link>
               </span>
             </p>
           </div>
 
           <Button className="mt-3" variant="dark" type="submit" onClick={handleSubmit}>
-            Daftar
+            Masuk
           </Button>
         </Form>
       </div>
@@ -96,4 +98,4 @@ function RegisterVendor() {
   );
 }
 
-export default RegisterVendor;
+export default Login;
