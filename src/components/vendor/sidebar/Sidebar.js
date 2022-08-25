@@ -1,57 +1,42 @@
-import React from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import "bootstrap-icons/font/bootstrap-icons.css";
-import "./sidebar.css"
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import './sidebar.css';
+import Nav from 'react-bootstrap/Nav';
 
 const Sidebar = () => {
-
   return (
-    <div className='container-fluid'>
-      <div className='row'>
-        <div className='col-auto min-vh-100 bg-dark text-light'>
-          <ul>
-            <br />
-            <li>
-              <NavLink className='nav-link px-3' to="/vendor-dashboard">
-                <i className='bi-house' /><span className='ms-1 d-none d-sm-inline'>Dashboard</span>
-              </NavLink>
-            </li>
-            <br />
-            <br />
-            <li>
-              <NavLink className='nav-link px-3' to="/vendor-collections">
-                <i className='bi bi-collection-fill' /><span className='ms-1 d-none d-sm-inline'>Collections</span>
-              </NavLink>
-            </li>
-            <br />
-            <br />
-
-            <li>
-              <NavLink className='nav-link px-3' to="/vendor-design-upload">
-                <i className='bi bi-cloud-upload' /><span className='ms-1 d-none d-sm-inline'>upload Design</span>
-              </NavLink>
-            </li>
-            <br />
-            <br />
-            <li>
-              <NavLink className='nav-link px-3' to="/vendor-sales">
-                <i className='bi bi-exclamation-circle' /><span className='ms-1 d-none d-sm-inline'>Sales Report</span>
-              </NavLink>
-            </li>
-            <br />
-            <br />
-            <li>
-              <NavLink className='nav-link px-3' to="/">
-                <i className='bi bi-gear-fill' /><span className='ms-1 d-none d-sm-inline'>Settings</span>
-              </NavLink>
-            </li>
-          </ul>
-
-        </div>
-      </div>
+    <div className='d-flex flex-wrap flex-sm-column justify-content-evenly justify-content-sm-start align-items-center align-items-md-start h-100 bg-dark text-light text-center text-md-start'>
+      <Nav.Link className='nav-link px-3 pt-sm-4' href='/vendor-dashboard'>
+        <h5 className='d-flex align-items-center'>
+          <i className='bi-house' />
+          <span className='ms-2 d-none d-md-inline'>Dashboard</span>
+        </h5>
+      </Nav.Link>
+      <Nav.Link className='nav-link px-3' href='/vendor-collections'>
+        <h5 className='d-flex align-items-center'>
+          <i className='bi bi-collection-fill' />
+          <span className='ms-2 d-none d-md-inline'>Collections</span>
+        </h5>
+      </Nav.Link>
+      <Nav.Link className='nav-link px-3' href='/vendor-design-upload'>
+        <h5 className='d-flex align-items-center'>
+          <i className='bi bi-cloud-upload' />
+          <div className='ms-2 d-none d-md-inline'>Upload Design</div>
+        </h5>
+      </Nav.Link>
+      <Nav.Link className='nav-link px-3' href='/vendor-sales'>
+        <h5 className='d-flex align-items-center'>
+          <i className='bi bi-exclamation-circle' />
+          <span className='ms-2 d-none d-md-inline'>Sales Report</span>
+        </h5>
+      </Nav.Link>
+      <Nav.Link className='nav-link px-3' href='/'>
+        <h5 className='d-flex align-items-center'>
+          <i className='bi bi-gear-fill' />
+          <span className='ms-2 d-none d-md-inline'>Settings</span>
+        </h5>
+      </Nav.Link>
     </div>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;

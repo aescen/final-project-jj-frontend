@@ -1,15 +1,11 @@
 import Form from 'react-bootstrap/Form';
+import './UploadPhotos.css'
 
-const UploadPhotos = ({ onChangeUploadPhotos }) => {
+const UploadPhotos = ({ show = true, onChangeUploadPhotos }) => {
   return (
-    <div>
+    <div className={show ? '' : 'd-none'}>
       <div
-        className='p-3 text-center'
-        style={{
-          backgroundColor: 'lightgray',
-          border: '2px dashed black',
-          cursor: 'pointer',
-        }}
+        className='p-3 text-center drop-area'
       >
         <Form.Group className='mb-3' controlId='uploadPhotos'>
           <Form.Label
@@ -29,7 +25,10 @@ const UploadPhotos = ({ onChangeUploadPhotos }) => {
             type='file'
             name='designPhotos[]'
             onChange={onChangeUploadPhotos}
-            accept='image/png,image/jpeg,image/webp'
+            accept='image/png, image/jpeg, image/webp'
+            onDragOver={() => console.log('dragover')}
+            onDragLeave={() => console.log('dragleave')}
+            onDrop={() => console.log('drop')}
             multiple
             style={{
               width: 'auto',
@@ -43,9 +42,9 @@ const UploadPhotos = ({ onChangeUploadPhotos }) => {
       <div>
         <br />
         <h6>Upload product photos</h6>
-        <p style={{ fontSize: '0.5em' }}>
-          Pick minimum of 3 photos with minimum size of 360x360px (recommended
-          photo size is 720x720px)
+        <p style={{ fontSize: '0.9em' }}>
+          Pick minimum of 3 photos with minimum size of 720x720px, recommended
+          photo size is 1400x1400px with WebP format (max photo size is 800kb)
         </p>
       </div>
     </div>

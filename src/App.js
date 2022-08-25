@@ -10,17 +10,17 @@ import Services from './components/about/Services';
 import Home from './components/home/Home';
 import Categories from './components/categories/Categories';
 // customers
-import LoginUser from './components/customer/login/LoginUser';
-import RegisterUser from './components/customer/register/RegisterUser';
-import ProfileUser from './components/customer/profile/ProfileUser';
+import RegisterCustomer from './components/customer/register/RegisterCustomer';
+import LoginCustomer from './components/customer/login/LoginCustomer';
+import ProfileCustomer from './components/customer/profile/ProfileCustomer';
 import Cart from './components/customer/carts/Cart';
 import Transactions from './components/customer/transactions/Transactions';
 import ConfirmTransaction from './components/customer/transactions/ConfirmTransaction';
 import TransactionStatus from './components/customer/transactions/TransactionStatus';
 import OrdersHistory from './components/customer/history/OrdersHistory';
 // vendors
-import LoginVendor from './components/vendor/login/LoginVendor';
 import RegisterVendor from './components/vendor/register/RegisterVendor';
+import LoginVendor from './components/vendor/login/LoginVendor';
 import ProfileVendor from './components/vendor/profile/ProfileVendor';
 import DashboardVendor from './components/vendor/dashboard/DashboardVendor';
 import CollectionsVendor from './components/vendor/collections/CollectionsVendor';
@@ -30,8 +30,8 @@ import SalesReport from './components/vendor/sales/SalesReport';
 function App() {
   return (
     <Router>
-      <Navbar />
       <div className='App-container'>
+        <Navbar />
         <div className='App-content'>
           <Routes>
             <Route path='*' element={<NotFound />} />
@@ -39,17 +39,29 @@ function App() {
               <Route path='description' element={<Description />} />
               <Route path='services' element={<Services />} />
             </Route>
-            <Route path='/' element={<Home />} />
-            <Route path='categories' element={<Categories />} />
-            {/* Udin */}
-
+            <Route
+              path='/'
+              element={
+                <ProtectedRoute userOnly={true}>
+                  <Home />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path='categories'
+              element={
+                <ProtectedRoute userOnly={true}>
+                  <Categories />
+                </ProtectedRoute>
+              }
+            />
 
             {/* customers */}
             <Route
               path='login'
               element={
                 <ProtectedRoute loginOnly={false}>
-                  <LoginUser />
+                  <LoginCustomer />
                 </ProtectedRoute>
               }
             />
@@ -57,22 +69,22 @@ function App() {
               path='register'
               element={
                 <ProtectedRoute loginOnly={false}>
-                  <RegisterUser />
+                  <RegisterCustomer />
                 </ProtectedRoute>
               }
             />
             <Route
               path='profile'
               element={
-                <ProtectedRoute>
-                  <ProfileUser />
+                <ProtectedRoute userOnly={true}>
+                  <ProfileCustomer />
                 </ProtectedRoute>
               }
             />
             <Route
               path='confirm-transaction'
               element={
-                <ProtectedRoute>
+                <ProtectedRoute userOnly={true}>
                   <ConfirmTransaction />
                 </ProtectedRoute>
               }
@@ -80,7 +92,7 @@ function App() {
             <Route
               path='carts'
               element={
-                <ProtectedRoute>
+                <ProtectedRoute userOnly={true}>
                   <Cart />
                 </ProtectedRoute>
               }
@@ -88,7 +100,7 @@ function App() {
             <Route
               path='transactions'
               element={
-                <ProtectedRoute>
+                <ProtectedRoute userOnly={true}>
                   <Transactions />
                 </ProtectedRoute>
               }
@@ -96,7 +108,7 @@ function App() {
             <Route
               path='transaction-status'
               element={
-                <ProtectedRoute>
+                <ProtectedRoute userOnly={true}>
                   <TransactionStatus />
                 </ProtectedRoute>
               }
@@ -104,7 +116,7 @@ function App() {
             <Route
               path='orders-history'
               element={
-                <ProtectedRoute>
+                <ProtectedRoute userOnly={true}>
                   <OrdersHistory />
                 </ProtectedRoute>
               }
@@ -120,7 +132,7 @@ function App() {
               }
             />
             <Route
-              path='vendor-register'
+              path='vendor-registration'
               element={
                 <ProtectedRoute loginOnly={false}>
                   <RegisterVendor />

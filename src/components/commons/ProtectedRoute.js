@@ -1,8 +1,14 @@
 import { Navigate } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
+import { useAuth, useUser } from '../../contexts/Contexts';
 
-const ProtectedRoute = ({ children, loginOnly = true, vendorOnly = false }) => {
+const ProtectedRoute = ({
+  children,
+  loginOnly = true,
+  vendorOnly = false,
+  userOnly = false,
+}) => {
   const { auth } = useAuth();
+  const { user } = useUser();
 
   if (auth.isAuthenticated === null) {
     console.log('Auth context is still loading...');
@@ -23,7 +29,17 @@ const ProtectedRoute = ({ children, loginOnly = true, vendorOnly = false }) => {
     return <Navigate to='/' />;
   }
 
-  if (auth?.user?.role !== 'vendor' && vendorOnly) {
+  if (user.role === 'vendor' && userOnly) {
+    console.log(`Element '${children.type.name}' is user only.`);
+
+    if (auth.isAuthenticated) {
+      return <Navigate to='/vendor-dashboard' />;
+    }
+
+    return <Navigate to='/' />;
+  }
+
+  if (user.role !== 'vendor' && vendorOnly) {
     console.log(`Element '${children.type.name}' is vendor only.`);
     return <Navigate to='/' />;
   }

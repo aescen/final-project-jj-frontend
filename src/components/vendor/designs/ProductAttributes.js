@@ -66,8 +66,8 @@ const ProductAttributes = ({
       </InputGroup>
       {productFeatures ? (
         <ul className='ps-3' style={{ listStylePosition: 'inside' }}>
-          {productFeatures.map((item) => (
-            <li>{item}</li>
+          {productFeatures.map((item, idx) => (
+            <li key={idx}>{item}</li>
           ))}
         </ul>
       ) : (

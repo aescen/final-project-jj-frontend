@@ -1,3 +1,19 @@
+.App-container {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.App.content {
+  flex: 1;
+}
+
+.App-footer {
+  bottom: 0;
+}
+
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
