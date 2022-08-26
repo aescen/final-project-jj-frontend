@@ -16,9 +16,10 @@ const uploadProduct = async (formData, token) => {
   } catch (error) {
     if (error.name === 'AxiosError') {
       console.log(error);
+      const { message } = error.response.data;
       return {
         statusCode: error.response.status,
-        message: error.response.data.message,
+        message: message || 'Error',
       };
     }
 

@@ -116,7 +116,12 @@ const UploadLayout = () => {
     const options = {
       dotsForObjectNotation: true,
     };
-    const formData = serialize(uploadForm, options);
+
+    const datas = {
+      ...uploadForm,
+      productFeatures: JSON.stringify(uploadForm.productFeatures),
+    };
+    const formData = serialize(datas, options);
 
     const result = UploadHelper.uploadProduct(formData, auth.accessToken);
     if (result) {

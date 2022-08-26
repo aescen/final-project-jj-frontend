@@ -28,7 +28,7 @@ const UploadedPhotos = ({ show = false, productPhotos = [] }) => {
   }, [productPhotos]);
 
   useEffect(() => {
-    console.log(imagesUrl);
+    // console.log(imagesUrl);
   }, [imagesUrl]);
 
   return (
