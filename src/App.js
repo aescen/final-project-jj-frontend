@@ -9,6 +9,7 @@ import Description from './components/about/Description';
 import Services from './components/about/Services';
 import Home from './components/home/Home';
 import Categories from './components/categories/Categories';
+import Detail from './components/products/Detail';
 // customers
 import RegisterCustomer from './components/customer/register/RegisterCustomer';
 import LoginCustomer from './components/customer/login/LoginCustomer';

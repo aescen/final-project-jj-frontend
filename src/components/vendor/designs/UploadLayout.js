@@ -9,7 +9,7 @@ import UploadPhotos from './UploadPhotos';
 import UploadedPhotos from './UploadedPhotos';
 import Alert from '../../commons/Alert';
 import { serialize } from 'object-to-formdata';
-import UploadHelper from './../../../helpers/UploadHelper';
+import { UploadHelper } from './../../../helpers';
 
 const UploadLayout = () => {
   const formRef = useRef(null);

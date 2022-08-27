@@ -1,254 +1,45 @@
-import React from 'react'
-import Layout from '../layout/Layout'
+import { useState, useEffect } from 'react';
+import { useAuth } from './../../../contexts/Contexts';
+import { CollectionsHelper } from './../../../helpers';
+import Layout from '../layout/Layout';
+import Collection from './Collection';
+
 const CollectionsVendor = () => {
+  const { auth } = useAuth();
+  // eslint-disable-next-line no-unused-vars
+  const [collectionsTmp, setCollectionsTmp] = useState([]);
+  const [collections, setCollections] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const getCollections = async () => {
+      setIsLoading(true);
+      const result = await CollectionsHelper.getCollections(auth.accessToken);
+      setCollectionsTmp(result.data);
+      setCollections(result.data);
+      setIsLoading(false);
+    };
+    if (auth.accessToken) {
+      getCollections();
+    }
+  }, [auth]);
+
   return (
-    <div>
-      <Layout>
+    <Layout>
+      <div className='container-fluid'>
+        <h2>Collections</h2>
+        {isLoading ? (
+          <></>
+        ) : collections.length === 0 ? (
+          <h3>No collections</h3>
+        ) : (
+          collections.map((item, idx) => (
+            <Collection key={idx} collection={item} />
+          ))
+        )}
+      </div>
+    </Layout>
+  );
+};
 
-        <div className="container-fluid">
-          <h2>Collections</h2>
-          <div className="row pt-4 gx-4 gy-4">
-            <h2 className='text-center'>Mediteranian</h2>
-
-            <div className="col-md-4">
-              <div className="card crop-img">
-                <img
-                  src="https://asset.kompas.com/crops/icva5Lwu8mguAdL-ZHNbwHT-eZ0=/0x0:1200x800/750x500/data/photo/2020/10/26/5f96aecd62a38.jpg"
-                  alt='rumah'
-                  className="card-img-top"
-                  width="200"
-                  height="200"
-                />
-                <div className="card-body">
-                  <h5 className="card-title">Lorem, ipsum.</h5>
-                  <p className="card-text">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
-                    odit atque nam animi dolores itaque.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="card crop-img">
-                <img
-                  src="https://asset.kompas.com/crops/icva5Lwu8mguAdL-ZHNbwHT-eZ0=/0x0:1200x800/750x500/data/photo/2020/10/26/5f96aecd62a38.jpg"
-                  alt='rumah'
-                  className="card-img-top"
-                  width="200"
-                  height="200"
-                />
-                <div className="card-body">
-                  <h5 className="card-title">Lorem, ipsum.</h5>
-                  <p className="card-text">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
-                    odit atque nam animi dolores itaque.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="card crop-img">
-                <img
-                  src="https://asset.kompas.com/crops/icva5Lwu8mguAdL-ZHNbwHT-eZ0=/0x0:1200x800/750x500/data/photo/2020/10/26/5f96aecd62a38.jpg"
-                  alt='rumah'
-                  className="card-img-top"
-                  width="200"
-                  height="200"
-                />
-                <div className="card-body">
-                  <h5 className="card-title">Lorem, ipsum.</h5>
-                  <p className="card-text">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
-                    odit atque nam animi dolores itaque.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="row pt-4 gx-4 gy-4">
-            <h2 className='text-center'>Kontemporer</h2>
-
-            <div className="col-md-4">
-              <div className="card crop-img">
-                <img
-                  src="https://asset.kompas.com/crops/icva5Lwu8mguAdL-ZHNbwHT-eZ0=/0x0:1200x800/750x500/data/photo/2020/10/26/5f96aecd62a38.jpg"
-                  alt='rumah'
-                  className="card-img-top"
-                  width="200"
-                  height="200"
-                />
-                <div className="card-body">
-                  <h5 className="card-title">Lorem, ipsum.</h5>
-                  <p className="card-text">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
-                    odit atque nam animi dolores itaque.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="card crop-img">
-                <img
-                  src="https://asset.kompas.com/crops/icva5Lwu8mguAdL-ZHNbwHT-eZ0=/0x0:1200x800/750x500/data/photo/2020/10/26/5f96aecd62a38.jpg"
-                  alt='rumah'
-                  className="card-img-top"
-                  width="200"
-                  height="200"
-                />
-                <div className="card-body">
-                  <h5 className="card-title">Lorem, ipsum.</h5>
-                  <p className="card-text">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
-                    odit atque nam animi dolores itaque.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="card crop-img">
-                <img
-                  src="https://asset.kompas.com/crops/icva5Lwu8mguAdL-ZHNbwHT-eZ0=/0x0:1200x800/750x500/data/photo/2020/10/26/5f96aecd62a38.jpg"
-                  alt='rumah'
-                  className="card-img-top"
-                  width="200"
-                  height="200"
-                />
-                <div className="card-body">
-                  <h5 className="card-title">Lorem, ipsum.</h5>
-                  <p className="card-text">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
-                    odit atque nam animi dolores itaque.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="row pt-4 gx-4 gy-4">
-            <h2 className='text-center'>Minimalis</h2>
-
-            <div className="col-md-4">
-              <div className="card crop-img">
-                <img
-                  src="https://asset.kompas.com/crops/icva5Lwu8mguAdL-ZHNbwHT-eZ0=/0x0:1200x800/750x500/data/photo/2020/10/26/5f96aecd62a38.jpg"
-                  alt='rumah'
-                  className="card-img-top"
-                  width="200"
-                  height="200"
-                />
-                <div className="card-body">
-                  <h5 className="card-title">Lorem, ipsum.</h5>
-                  <p className="card-text">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
-                    odit atque nam animi dolores itaque.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="card crop-img">
-                <img
-                  src="https://asset.kompas.com/crops/icva5Lwu8mguAdL-ZHNbwHT-eZ0=/0x0:1200x800/750x500/data/photo/2020/10/26/5f96aecd62a38.jpg"
-                  alt='rumah'
-                  className="card-img-top"
-                  width="200"
-                  height="200"
-                />
-                <div className="card-body">
-                  <h5 className="card-title">Lorem, ipsum.</h5>
-                  <p className="card-text">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
-                    odit atque nam animi dolores itaque.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="card crop-img">
-                <img
-                  src="https://asset.kompas.com/crops/icva5Lwu8mguAdL-ZHNbwHT-eZ0=/0x0:1200x800/750x500/data/photo/2020/10/26/5f96aecd62a38.jpg"
-                  alt='rumah'
-                  className="card-img-top"
-                  width="200"
-                  height="200"
-                />
-                <div className="card-body">
-                  <h5 className="card-title">Lorem, ipsum.</h5>
-                  <p className="card-text">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
-                    odit atque nam animi dolores itaque.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="row pt-4 gx-4 gy-4">
-            <h2 className='text-center'>Modern</h2>
-
-            <div className="col-md-4">
-              <div className="card crop-img">
-                <img
-                  src="https://asset.kompas.com/crops/icva5Lwu8mguAdL-ZHNbwHT-eZ0=/0x0:1200x800/750x500/data/photo/2020/10/26/5f96aecd62a38.jpg"
-                  alt='rumah'
-                  className="card-img-top"
-                  width="200"
-                  height="200"
-                />
-                <div className="card-body">
-                  <h5 className="card-title">Lorem, ipsum.</h5>
-                  <p className="card-text">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
-                    odit atque nam animi dolores itaque.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="card crop-img">
-                <img
-                  src="https://asset.kompas.com/crops/icva5Lwu8mguAdL-ZHNbwHT-eZ0=/0x0:1200x800/750x500/data/photo/2020/10/26/5f96aecd62a38.jpg"
-                  alt='rumah'
-                  className="card-img-top"
-                  width="200"
-                  height="200"
-                />
-                <div className="card-body">
-                  <h5 className="card-title">Lorem, ipsum.</h5>
-                  <p className="card-text">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
-                    odit atque nam animi dolores itaque.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="card crop-img">
-                <img
-                  src="https://asset.kompas.com/crops/icva5Lwu8mguAdL-ZHNbwHT-eZ0=/0x0:1200x800/750x500/data/photo/2020/10/26/5f96aecd62a38.jpg"
-                  alt='rumah'
-                  className="card-img-top"
-                  width="200"
-                  height="200"
-                />
-                <div className="card-body">
-                  <h5 className="card-title">Lorem, ipsum.</h5>
-                  <p className="card-text">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
-                    odit atque nam animi dolores itaque.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </Layout>
-
-
-
-
-
-    </div>
-  )
-}
-
-export default CollectionsVendor
+export default CollectionsVendor;
