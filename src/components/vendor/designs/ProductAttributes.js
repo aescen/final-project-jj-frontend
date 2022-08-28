@@ -28,6 +28,8 @@ const ProductAttributes = ({
           <option>Choose</option>
           <option>Minimalis</option>
           <option>Modern</option>
+          <option>Mediteranian</option>
+          <option>Kontemporer</option>
         </Form.Select>
       </Form.Group>
       <Form.Group className='mb-3' controlId='productType'>

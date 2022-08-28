@@ -40,10 +40,11 @@ function App() {
               <Route path='description' element={<Description />} />
               <Route path='services' element={<Services />} />
             </Route>
+
             <Route
               path='/'
               element={
-                <ProtectedRoute userOnly={true}>
+                <ProtectedRoute userOnly={true} loginOnly={false}>
                   <Home />
                 </ProtectedRoute>
               }
@@ -51,7 +52,7 @@ function App() {
             <Route
               path='categories'
               element={
-                <ProtectedRoute userOnly={true}>
+                <ProtectedRoute userOnly={true} loginOnly={false}>
                   <Categories />
                 </ProtectedRoute>
               }

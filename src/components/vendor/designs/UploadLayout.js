@@ -1,15 +1,15 @@
 /* eslint-disable no-unused-vars */
 import { useRef, useState } from 'react';
+import { serialize } from 'object-to-formdata';
 import Form from 'react-bootstrap/Form';
 import { useAuth } from './../../../contexts/Contexts';
+import { UploadHelper } from './../../../helpers';
 import ProductAttributes from './ProductAttributes';
 import ProductOrganization from './ProductOrganization';
 import SaveProduct from './SaveProduct';
 import UploadPhotos from './UploadPhotos';
 import UploadedPhotos from './UploadedPhotos';
 import Alert from '../../commons/Alert';
-import { serialize } from 'object-to-formdata';
-import { UploadHelper } from './../../../helpers';
 
 const UploadLayout = () => {
   const formRef = useRef(null);
