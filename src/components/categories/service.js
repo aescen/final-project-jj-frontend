@@ -1,11 +1,11 @@
-import { Categories } from "./CategoriesItems";
-
-export function getCategories() {
-    const CategoriesList = Categories;
-    return CategoriesList;
+export function getCategoriesFromProducts(products) {
+  const categories = products.map((item) => item.productCollection);
+  return ['All', ...new Set(categories)];
 }
 
-export function filterCategories(cateType) {
-    let filtredCategories = getCategories().filter((type) => type.tipo === cateType);
-    return filtredCategories;
+export function getProductsFromCategory(products, category) {
+  const newProducts = products.filter(
+    (item) => item.productCollection === category,
+  );
+  return newProducts;
 }

@@ -1,66 +1,93 @@
 import { useState, useEffect } from 'react';
-import { UploadHelper } from './../../../helpers';
-import { buttons } from './CategoriesItems';
-import { getCategories, filterCategories } from './service';
+import { useNavigate } from 'react-router-dom';
+import { ProductsHelper } from '../../helpers';
+import { getCategoriesFromProducts, getProductsFromCategory } from './service';
 
 const Categories = () => {
-  const [filtredCategories, setFiltredCategories] = useState(null);
+  const navigate = useNavigate();
+  const [productsTmp, setProductsTmp] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
-    setFiltredCategories(getCategories());
+    const getProducts = async () => {
+      setIsLoading(true);
+      const result = await ProductsHelper.getProducts();
+
+      const theProducts = result.data;
+      const theCategories = getCategoriesFromProducts(theProducts);
+
+      setProducts(theProducts);
+      setProductsTmp(theProducts);
+      setCategories(theCategories);
+      setIsLoading(false);
+    };
+
+    getProducts();
   }, []);
 
   function handleCategories(e) {
-    let typeCategories = e.target.value;
-    typeCategories !== 'all'
-      ? setFiltredCategories(filterCategories(typeCategories))
-      : setFiltredCategories(getCategories());
+    const category = e.target.value;
+    category !== 'All'
+      ? setProducts(getProductsFromCategory(productsTmp, category))
+      : setProducts(productsTmp);
   }
 
   return (
     <div className='min-vw-100 mt-5 px-5'>
       <div className='container-fluid'>
-        <div className='row justify-content-around align-items-center'>
-          {buttons &&
-            buttons.map((type, index) => (
-              <div key={index} className='col-md-2 mb-3'>
-                <button
-                  type='button'
-                  className='btn btn-secondary'
-                  key={index}
-                  value={type.value}
-                  onClick={handleCategories}
-                >
-                  {type.name}
-                </button>
-              </div>
-            ))}
-        </div>
-        <div className='row text-center pt-4 gx-4 gy-4 p-4'>
-          {filtredCategories &&
-            filtredCategories.map((type) => (
-              <div className='col-md-4' key={type.id}>
-                <div className='card crop-img'>
-                  <img
-                    src='https://media.suara.com/pictures/480x260/2020/04/18/15789-cara-membuat-website.jpg'
-                    className='card-img-top'
-                    width='200'
-                    height='200'
-                    alt={type.id}
-                  />
-                  <div className='card-body'>
-                    <h5 className='card-title'>{type.nome}</h5>
-                    <p className='card-text'>
-                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                      Quis odit atque nam animi dolores itaque.
-                    </p>
-                    <button type='button' className='btn btn-secondary'>
-                      Your Design
-                    </button>
+        {isLoading ? (
+          <h3>Loading</h3>
+        ) : products.length === 0 ? (
+          <h3>No products</h3>
+        ) : (
+          <>
+            <div className='row justify-content-around align-items-center'>
+              {categories.map((item, index) => (
+                <div key={index} className='col-md-2 mb-3'>
+                  <button
+                    type='button'
+                    className='btn btn-secondary'
+                    key={index}
+                    value={item}
+                    onClick={handleCategories}
+                  >
+                    {item}
+                  </button>
+                </div>
+              ))}
+            </div>
+            <div className='row text-center pt-4 gx-4 gy-4 p-4'>
+              {products.map((item) => (
+                <div className='col-md-4' key={item.productId}>
+                  <div className='card crop-img'>
+                    <img
+                      src={item.designPhotos[0]}
+                      className='card-img-top'
+                      width='200'
+                      height='200'
+                      alt={item.productId}
+                    />
+                    <div className='card-body'>
+                      <h5 className='card-title'>{item.productName}</h5>
+                      <p className='card-text'>{item.productDescription}</p>
+                      <button
+                        type='button'
+                        className='btn btn-secondary'
+                        onClick={() =>
+                          navigate(`/products/detail/${item.productId}`)
+                        }
+                      >
+                        More Info
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-        </div>
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

@@ -14,7 +14,7 @@ const UploadedPhotos = ({ show = false, productPhotos = [] }) => {
       const loadImage = async (fileObj) => {
         const reader = new FileReader();
         reader.onload = (ev) => {
-          setImagesUrl((p) => [...imagesUrl, ev.target.result]);
+          setImagesUrl([...imagesUrl, ev.target.result]);
         };
         reader.readAsDataURL(fileObj);
       };
@@ -28,7 +28,7 @@ const UploadedPhotos = ({ show = false, productPhotos = [] }) => {
   }, [productPhotos]);
 
   useEffect(() => {
-    // console.log(imagesUrl);
+    console.log(imagesUrl);
   }, [imagesUrl]);
 
   return (

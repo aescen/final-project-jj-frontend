@@ -1,89 +1,131 @@
 import React from 'react';
+import { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import Carousel from 'react-bootstrap/Carousel';
+import { ProductsHelper } from '../../helpers';
+import { useUser } from '../../contexts/Contexts';
+import { QUICK_BUY, CURRENT_PRODUCT } from '../../contexts/ContextConsts';
+
 const Detail = () => {
+  const params = useParams();
+  const navigate = useNavigate();
+  const { user } = useUser();
+  const [index, setIndex] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const [product, setProduct] = useState(null);
+
+  const handleSelect = (selectedIndex, e) => {
+    setIndex(selectedIndex);
+  };
+
+  const handleBuyNow = () => {
+    let idUser;
+    if (user.id !== '') {
+      idUser = user.id;
+    }
+
+    console.log(user);
+
+    const transaction = {
+      idUser,
+      recipientName: `${user.firstName} ${user.lastName}`,
+      recipientEmail: user.email,
+      recipientPhone: user.phone,
+      idProduct: product.productId,
+      quickBuyer: true,
+    };
+
+    sessionStorage.setItem(QUICK_BUY, JSON.stringify(transaction));
+    sessionStorage.setItem(CURRENT_PRODUCT, JSON.stringify(product));
+
+    navigate('/transactions');
+  };
+
+  useEffect(() => {
+    const getProductById = async () => {
+      setIsLoading(true);
+
+      const result = await ProductsHelper.getProductById(params.id);
+
+      setProduct(result.data);
+      setIsLoading(false);
+    };
+
+    getProductById();
+  }, [params.id]);
+
   return (
     <div>
       <div className='container'>
-        <div class='row text-center mb-3'>
-          <div class='col'>
+        <div className='row text-center mb-3'>
+          <div className='col'>
             <h1>HOME/RESIDENTIAL/HOUSES/NAMA-DESAIN</h1>
           </div>
         </div>
-        <div className='row'>
-          <div className='col-6'>
-            <Carousel>
-              <Carousel.Item>
-                <img
-                  className='d-block w-100'
-                  src='https://th.bing.com/th/id/OIP.d3pRMtBPmleEvLPrk5VDkAHaF7?pid=ImgDet&rs=1'
-                  alt='First slide'
-                />
-                <Carousel.Caption>
-                  <h3>First slide label</h3>
-                  <p>
-                    Nulla vitae elit libero, a pharetra augue mollis interdum.
-                  </p>
-                </Carousel.Caption>
-              </Carousel.Item>
-              <Carousel.Item>
-                <img
-                  className='d-block w-100'
-                  src='https://th.bing.com/th/id/OIP.d3pRMtBPmleEvLPrk5VDkAHaF7?pid=ImgDet&rs=1'
-                  alt='Second slide'
-                />
-
-                <Carousel.Caption>
-                  <h3>Second slide label</h3>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </p>
-                </Carousel.Caption>
-              </Carousel.Item>
-              <Carousel.Item>
-                <img
-                  className='d-block w-100'
-                  src='https://th.bing.com/th/id/OIP.d3pRMtBPmleEvLPrk5VDkAHaF7?pid=ImgDet&rs=1'
-                  alt='Third slide'
-                />
-
-                <Carousel.Caption>
-                  <h3>Third slide label</h3>
-                  <p>
-                    Praesent commodo cursus magna, vel scelerisque nisl
-                    consectetur.
-                  </p>
-                </Carousel.Caption>
-              </Carousel.Item>
-            </Carousel>
-          </div>
-          <div className='col-6'>
-            <h2 className='text-center'>Nama Desain</h2>
-            <h3 className='/'>HARGA</h3>
-            <h3>Description</h3>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum.
-            </p>
-            <div>
-              <div className='justify-content-center'>
-                <button type='button' class='btn btn-secondary'>
-                  Secondary
-                </button>
-                <button type='button' class='btn btn-secondary'>
-                  Secondary
-                </button>
+        {isLoading ? (
+          <h3>Loading</h3>
+        ) : (
+          <div className='row'>
+            <div className='col-6'>
+              {product.designPhotos.length > 0 ? (
+                <>
+                  <Carousel
+                    activeIndex={index}
+                    onSelect={handleSelect}
+                    indicators={false}
+                  >
+                    {product.designPhotos.map((item, idx) => (
+                      <Carousel.Item key={idx}>
+                        <img
+                          className='d-block w-100'
+                          src={item}
+                          alt={'product slide ' + item}
+                        />
+                      </Carousel.Item>
+                    ))}
+                  </Carousel>
+                  <div className='row p-0 m-0'>
+                    {product.designPhotos.map((item, idx) => (
+                      <div className='col-6 p-0 m-0' key={idx}>
+                        <img
+                          className='d-block w-100 p-1'
+                          key={idx}
+                          src={item}
+                          onClick={() => setIndex(idx)}
+                          alt={'product thumb ' + item}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                ''
+              )}
+            </div>
+            <div className='col-6'>
+              <h2 className='text-center'>{product.productName}</h2>
+              <h3 className='/'>
+                {ProductsHelper.toFormatted(product.productPrice)}
+              </h3>
+              <h3>Description</h3>
+              <p>{product.productDescription}</p>
+              <div>
+                <div className='justify-content-center'>
+                  <button
+                    type='button'
+                    className='btn btn-secondary'
+                    onClick={handleBuyNow}
+                  >
+                    Buy
+                  </button>
+                  <button type='button' className='btn btn-secondary'>
+                    Add to cart
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
       <div></div>
     </div>

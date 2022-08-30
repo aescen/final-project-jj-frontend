@@ -57,6 +57,14 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            <Route
+              path='products/detail/:id'
+              element={
+                <ProtectedRoute userOnly={true} loginOnly={false}>
+                  <Detail />
+                </ProtectedRoute>
+              }
+            />
 
             {/* customers */}
             <Route

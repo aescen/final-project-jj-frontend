@@ -25,11 +25,12 @@ const ProtectedRoute = ({
     return <Navigate to='/login' />;
   }
 
-  if (auth.isAuthenticated && !loginOnly) {
-    return <Navigate to='/' />;
-  }
-
-  if (user.role === 'vendor' && userOnly) {
+  if (
+    auth.isAuthenticated &&
+    !loginOnly &&
+    user.role === 'vendor' &&
+    userOnly
+  ) {
     console.log(`Element '${children.type.name}' is user only.`);
 
     if (auth.isAuthenticated) {
@@ -39,7 +40,12 @@ const ProtectedRoute = ({
     return <Navigate to='/' />;
   }
 
-  if (user.role !== 'vendor' && vendorOnly) {
+  if (
+    auth.isAuthenticated &&
+    !loginOnly &&
+    user.role !== 'vendor' &&
+    vendorOnly
+  ) {
     console.log(`Element '${children.type.name}' is vendor only.`);
     return <Navigate to='/' />;
   }
