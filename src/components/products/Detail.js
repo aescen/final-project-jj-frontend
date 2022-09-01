@@ -2,9 +2,11 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Carousel from 'react-bootstrap/Carousel';
+import Button from 'react-bootstrap/Button';
 import { ProductsHelper } from '../../helpers';
 import { useUser } from '../../contexts/Contexts';
 import { QUICK_BUY, CURRENT_PRODUCT } from '../../contexts/ContextConsts';
+import wavey from '../../assets/wave-static-down.svg';
 
 const Detail = () => {
   const params = useParams();
@@ -55,18 +57,23 @@ const Detail = () => {
   }, [params.id]);
 
   return (
-    <div>
+    <div
+      className='min-vw-100 min-vh-100'
+      style={{
+        background: `url(${wavey}) no-repeat bottom`,
+        backgroundSize: 'contain',
+      }}
+    >
       <div className='container'>
-        <div className='row text-center mb-3'>
-          <div className='col'>
-            <h1>HOME/RESIDENTIAL/HOUSES/NAMA-DESAIN</h1>
-          </div>
+        <div className='fs-3 fw-semibold text-uppercase text-center mb-4 mt-5'>
+          DESIGN/{product.productCollection}/{product.productType}/
+          {product.productName}
         </div>
         {isLoading ? (
           <h3>Loading</h3>
         ) : (
           <div className='row'>
-            <div className='col-6'>
+            <div className='col-8'>
               {product.designPhotos.length > 0 ? (
                 <>
                   <Carousel
@@ -86,7 +93,7 @@ const Detail = () => {
                   </Carousel>
                   <div className='row p-0 m-0'>
                     {product.designPhotos.map((item, idx) => (
-                      <div className='col-6 p-0 m-0' key={idx}>
+                      <div className='col-4 p-0 m-0' key={idx}>
                         <img
                           className='d-block w-100 p-1'
                           key={idx}
@@ -102,32 +109,33 @@ const Detail = () => {
                 ''
               )}
             </div>
-            <div className='col-6'>
-              <h2 className='text-center'>{product.productName}</h2>
-              <h3 className='/'>
+            <div className='col-4 text-start'>
+              <div className='fs-4 fw-bold mb-1'>{product.productName}</div>
+              <div className='fs-5 fw-semibold mb-3'>
                 {ProductsHelper.toFormatted(product.productPrice)}
-              </h3>
-              <h3>Description</h3>
-              <p>{product.productDescription}</p>
+              </div>
+              <div className='fs-5 fw-semibold mb-1'>Description</div>
+              <div className='fs-6 mb-5'>{product.productDescription}</div>
               <div>
                 <div className='justify-content-center'>
-                  <button
+                  <Button
+                    size='lg'
                     type='button'
-                    className='btn btn-secondary'
+                    variant='primary'
                     onClick={handleBuyNow}
+                    className='fw-bold'
                   >
                     Buy
-                  </button>
-                  <button type='button' className='btn btn-secondary'>
+                  </Button>
+                  {/* <button type='button' className='btn btn-secondary'>
                     Add to cart
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>
           </div>
         )}
       </div>
-      <div></div>
     </div>
   );
 };

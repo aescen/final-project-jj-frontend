@@ -65,7 +65,6 @@ const Categories = () => {
                     <img
                       src={item.designPhotos[0]}
                       className='card-img-top'
-                      width='200'
                       height='200'
                       alt={item.productId}
                     />

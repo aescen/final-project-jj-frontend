@@ -13,8 +13,7 @@ const TransactionStatus = () => {
     <div
       className='min-vw-100 min-vh-100'
       style={{
-        display: 'absolute',
-        zIndex: -1,
+
         background: `url(${bgPayments}) no-repeat bottom`,
         backgroundSize: 'contain',
       }}

@@ -1,50 +1,96 @@
 import React from 'react';
-import gambar from '../../assets/background2.svg';
 import gambarrumah from '../../assets/desain1.svg';
-import gambar1 from '../../assets/desain2.svg';
-import gambar2 from '../../assets/desain.svg';
+import gambarrumah1 from '../../assets/desain.svg';
+import gambarrumah2 from '../../assets/desain2.svg';
 import { useNavigate } from 'react-router-dom';
 import './home.css';
 const Home = () => {
   const navigate = useNavigate();
   return (
     <div className='min-vw-100'>
-      {/*
-      <div className="carousel-inner" style={{ borderRadius: 20, height: 500, width: 1350 }}>
-=======
-	const navigate = useNavigate();
-	return (
-		<div>
-			{/* <div className="carousel-inner" style={{ borderRadius: 20, height: 500, width: 1350 }}>
->>>>>>> 51d9f08fb5dad65f33d40c5a42c6bbe5017e7933
-              <div className="carousel-item active" data-bs-interval="7000">
-                <img src={gambar} alt="..." />
-                <div className="carousel-caption " style={{ position: "absolute", top: "20%", left: "15%", margin: "auto" }}>
-                  <h1 style={{ color: "white" }} className=" align-self-center d-flex mx-auto ">
-                    Bangun Rumah Impian Anda
-                  </h1>
-                  <h5 style={{ color: "white" }} className=" align-self-center d-flex mx-auto ">
-                    Marketplace jasa desain & bangun Rumah terpercaya di Indonesia
-                  </h5>
-                </div>
-              </div>
-            </div> */}
-
       <div className=' banner'>
         <div className='container-fluid overlay  '>
           <div className='container text-center'>
-            <h4 className='display-6 fw-bold'>
-              Selamat Datang di Website Kami
+            <h4 className='display-6 fw-bold text-uppercase'>
+              Jelajahi Desain Arsitektur dan Dekorasi Siap Bangun.
             </h4>
-            <h3 className='display-1 fw-bold'>Hai! Halo!</h3>
-            <a href='#layanan'>
-              <button type='button' className='btn btn-secondary btn-lg'>
-                Cek Layanan
-              </button>
-            </a>
+            <h4 className='display-6 fw-bold text-uppercase'>
+              Di Desain oleh Arsitek dan Vendor Berkualitas.
+            </h4>
+            <br />
+            <br />
+            <h3>
+              Rumah, Apatemen, Modern, Minimalis, Kontemporer, Mediteranian, Dll
+            </h3>
+            <br />
+
+            <button
+              type='button'
+              onClick={() => navigate('categories')}
+              className='btn btn-light btn-lg'
+              style={{ backgroundColor: 'white' }}
+            >
+              Beli Sekarang
+            </button>
           </div>
         </div>
       </div>
+
+      <div className='container-fluid pt-5 pb-5 bg-light'>
+        <div className='container text-center'>
+          <h2 className='display-6 fw-bold'>Populer Projects</h2>
+
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti,
+            dolorum quasi? Neque consectetur odio placeat inventore perferendis
+            quibusdam omnis deleniti.
+          </p>
+
+          <div className='row pt-4 gx-4 gy-4'>
+            <div className='col-md-4'>
+              <div className='card crop-img'>
+                <img src={gambarrumah} className='card-img-top rumah' />
+                <div className='card-body'>
+                  <h5 className='card-title'>Lorem, ipsum.</h5>
+                  <p className='card-text'>
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                    Quis odit atque nam animi dolores itaque.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className='col-md-4'>
+              <div className='card crop-img '>
+                <img src={gambarrumah2} className='card-img-top rumah' />
+                <div className='card-body'>
+                  <h5 className='card-title'>Lorem, ipsum.</h5>
+                  <p className='card-text'>
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                    Quis odit atque nam animi dolores itaque.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className='col-md-4'>
+              <div className='card crop-img'>
+                <img src={gambarrumah1} className='card-img-top rumah' />
+                <div className='card-body'>
+                  <h5 className='card-title'>Lorem, ipsum.</h5>
+                  <p className='card-text'>
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                    Quis odit atque nam animi dolores itaque.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <section className='quote'>
+        <div className='layar-dalam'></div>
+      </section>
 
       <section className='hero-banner bg-light py-5'>
         <div className='container'>
@@ -57,30 +103,26 @@ const Home = () => {
               />
             </div>
             <div className='col-lg-6'>
-              <h1 className='mt-3'>Kita Dekorasi </h1>
+              <h1 className='mt-3'>GA Arsitektur dan Dekorasi </h1>
               <p className='lead text-secondary my-5'>
-                It is a long established fact that a reader will be distracted
-                by the readable content of a page when looking at its layout.
-                Point of using Lorem Ipsum is that it has a more-or-less normal
-                distribution of letters.
+                Menjual desain berkualitas siap bangun untuk proyek anda. Kami
+                mendukung vendor independen maupun kelompok menampilkan dan
+                menjual karya terbaik mereka.
+              </p>
+              <p className='lead text-secondary my-5'>
+                Ingin menjadi vendor kami? Daftarkan vendor anda dan
+                bergabunglah bersama kami
               </p>
               <span
-                onClick={() => navigate('categories')}
+                onClick={() => navigate('vendor-registration')}
                 className='btn btn-outline-secondary btn-lg border'
               >
-                Order Now
+                Register Vendor
               </span>
             </div>
           </div>
         </div>
       </section>
-      <section className='quote'>
-        <div className='layar-dalam'>
-          <p>Selamat datang ke Website Kita Dekor</p>
-        </div>
-      </section>
-
-      {/* Card */}
     </div>
   );
 };
