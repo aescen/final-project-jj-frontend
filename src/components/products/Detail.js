@@ -28,11 +28,11 @@ const Detail = () => {
 
     const transaction = {
       idUser,
+      idProduct: product.productId,
+      quickBuyer: true,
       recipientName: `${user.firstName} ${user.lastName}`,
       recipientEmail: user.email,
       recipientPhone: user.phone,
-      idProduct: product.productId,
-      quickBuyer: true,
     };
 
     sessionStorage.setItem(QUICK_BUY, JSON.stringify(transaction));
