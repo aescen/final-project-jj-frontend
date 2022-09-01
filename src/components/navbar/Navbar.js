@@ -4,7 +4,7 @@ import { LinkContainer } from 'react-router-bootstrap'; // Bootstrap
 import Container from 'react-bootstrap/Container';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Nav from 'react-bootstrap/Nav';
-import { default as NavBar } from 'react-bootstrap/NavBar';
+import { default as NavBar } from 'react-bootstrap/Navbar';
 import Avatar from 'react-avatar';
 import { useAuth, useUser } from './../../contexts/Contexts';
 import { LOGOUT, DELETE_USER } from './../../contexts/ContextConsts';
