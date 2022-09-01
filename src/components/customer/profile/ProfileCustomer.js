@@ -10,12 +10,12 @@ const ProfileCustomer = () => {
       <div className='position-relative'>
         <div
           className='position-absolute top-0 start-0'
-          style={{ minHeight: '37vh', width: '100vw', backgroundColor: '#373737'}}
+          style={{ height: '18em', width: '100vw', backgroundColor: '#373737'}}
         >
         </div>
         <div className='d-flex justify-content-center p-4'>
           {user ? (
-            <div className='card vw-75 mt-5 pd-5'>
+            <div className='card vw-75 mt-5'>
               <div className='position-relative'>
                 <div
                   className='card-img-top w-100 bg-secondary'

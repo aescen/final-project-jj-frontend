@@ -48,6 +48,29 @@ const registerVendor = async (vendorForm) => {
   }
 };
 
+const getVendorById = async (id, token) => {
+  try {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const vendor = await api.get(`/vendors/${id}`, config);
+
+    return { statusCode: vendor.status, data: vendor.data.vendor };
+  } catch (error) {
+    if (error.name === 'AxiosError') {
+      return {
+        statusCode: error.response.status,
+        message: error.response.data?.message || '',
+      };
+    }
+
+    return null;
+  }
+};
+
 const userRegisterValidation = (value) => {
   const errors = {};
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
@@ -100,6 +123,7 @@ const UsersHelper = {
   registerVendor,
   userRegisterValidation,
   vendorRegisterValidation,
+  getVendorById,
 };
 
 export default UsersHelper;

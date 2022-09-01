@@ -20,6 +20,7 @@ import ConfirmTransaction from './components/customer/transactions/ConfirmTransa
 import TransactionStatus from './components/customer/transactions/TransactionStatus';
 import OrdersHistory from './components/customer/history/OrdersHistory';
 // vendors
+import VendorJoin from './components/vendor/register/Join';
 import RegisterVendor from './components/vendor/register/RegisterVendor';
 import LoginVendor from './components/vendor/login/LoginVendor';
 import ProfileVendor from './components/vendor/profile/ProfileVendor';
@@ -133,6 +134,7 @@ function App() {
             />
 
             {/* vendors */}
+            <Route path='vendor-join' element={<VendorJoin />} />
             <Route
               path='vendor-login'
               element={

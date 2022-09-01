@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Card } from 'react-bootstrap';
 import { UsersHelper } from '../../../helpers';
 import Alert from '../../commons/Alert';
 import Toast from './../../commons/Toast';
@@ -83,94 +83,98 @@ const RegisterCustomer = () => {
         handleClose={handleCloseAlert}
       />
       <Toast show={isLoading} loading={isLoading} />
-      <h1>Register account</h1>
-      <Form className='mt-5'>
-        <div className='text-start'>
-          <hr />
-          <Form.Group className='mb-3' controlId='formFirstName'>
-            <Form.Label>
-              <h4>First Name</h4>
-            </Form.Label>
-            <Form.Control
-              type='text'
-              placeholder='Enter first name'
-              name='firstName'
-              onChange={(ev) => handleChange(ev)}
-              onKeyPress={(ev) => handleKeyPress(ev)}
-            />
-          </Form.Group>
-          <p className='text-danger'>{formError.firstName}</p>
+      <Card className='my-5' style={{ minWidth: '32em' }}>
+        <Card.Body>
+          <div className='display-6 fw-semibold'>Register account</div>
+          <Form className='mt-5'>
+            <div className='text-start'>
+              <hr />
+              <Form.Group className='mb-3' controlId='formFirstName'>
+                <Form.Label>
+                  <h5>First Name</h5>
+                </Form.Label>
+                <Form.Control
+                  type='text'
+                  placeholder='Enter first name'
+                  name='firstName'
+                  onChange={(ev) => handleChange(ev)}
+                  onKeyPress={(ev) => handleKeyPress(ev)}
+                />
+              </Form.Group>
+              <p className='text-danger'>{formError.firstName}</p>
 
-          <Form.Group className='mb-3' controlId='formLastName'>
-            <Form.Label>
-              <h4>Last Name</h4>
-            </Form.Label>
-            <Form.Control
-              type='text'
-              placeholder='Enter last name'
-              name='lastName'
-              onChange={(ev) => handleChange(ev)}
-              onKeyPress={(ev) => handleKeyPress(ev)}
-            />
-          </Form.Group>
+              <Form.Group className='mb-3' controlId='formLastName'>
+                <Form.Label>
+                  <h5>Last Name</h5>
+                </Form.Label>
+                <Form.Control
+                  type='text'
+                  placeholder='Enter last name'
+                  name='lastName'
+                  onChange={(ev) => handleChange(ev)}
+                  onKeyPress={(ev) => handleKeyPress(ev)}
+                />
+              </Form.Group>
 
-          <Form.Group className='mb-3' controlId='formEmail'>
-            <Form.Label>
-              <h4>Email</h4>
-            </Form.Label>
-            <Form.Control
-              type='email'
-              placeholder='Enter email'
-              name='email'
-              onChange={(ev) => handleChange(ev)}
-              onKeyPress={(ev) => handleKeyPress(ev)}
-            />
-          </Form.Group>
-          <p className='text-danger'>{formError.email}</p>
+              <Form.Group className='mb-3' controlId='formEmail'>
+                <Form.Label>
+                  <h5>Email</h5>
+                </Form.Label>
+                <Form.Control
+                  type='email'
+                  placeholder='Enter email'
+                  name='email'
+                  onChange={(ev) => handleChange(ev)}
+                  onKeyPress={(ev) => handleKeyPress(ev)}
+                />
+              </Form.Group>
+              <p className='text-danger'>{formError.email}</p>
 
-          <Form.Group className='mb-3' controlId='formPassword'>
-            <Form.Label>
-              <h4>Password</h4>
-            </Form.Label>
-            <Form.Control
-              type={showPass ? 'text' : 'password'}
-              placeholder='Enter password'
-              name='password'
-              onChange={(ev) => handleChange(ev)}
-              onKeyPress={(ev) => handleKeyPress(ev)}
-            />
-          </Form.Group>
-          <p className='text-danger'>{formError.password}</p>
+              <Form.Group className='mb-3' controlId='formPassword'>
+                <Form.Label>
+                  <h5>Password</h5>
+                </Form.Label>
+                <Form.Control
+                  type={showPass ? 'text' : 'password'}
+                  placeholder='Enter password'
+                  name='password'
+                  onChange={(ev) => handleChange(ev)}
+                  onKeyPress={(ev) => handleKeyPress(ev)}
+                />
+              </Form.Group>
+              <p className='text-danger'>{formError.password}</p>
 
-          <Form.Group className='mb-3' controlId='formCheckbox'>
-            <Form.Check
-              type='checkbox'
-              label='Show password'
-              onChange={showPassword}
-              checked={showPass}
-            />
-          </Form.Group>
-          <hr />
-        </div>
+              <Form.Group className='mb-3' controlId='formCheckbox'>
+                <Form.Check
+                  type='checkbox'
+                  label='Show password'
+                  onChange={showPassword}
+                  checked={showPass}
+                />
+              </Form.Group>
+              <hr />
+            </div>
 
-        <div className='text-start'>
-          <p>
-            Already have an account?&nbsp;
-            <span>
-              <Link to='/login'>Login</Link>
-            </span>
-          </p>
-        </div>
+            <div className='text-start'>
+              <p>
+                Already have an account?&nbsp;
+                <span>
+                  <Link to='/login'>Login</Link>
+                </span>
+              </p>
+            </div>
 
-        <Button
-          className='mt-3'
-          variant='dark'
-          type='submit'
-          onClick={handleSubmit}
-        >
-          Register
-        </Button>
-      </Form>
+            <Button
+              className='mt-3'
+              variant='dark'
+              type='submit'
+              onClick={handleSubmit}
+            >
+              Register
+            </Button>
+          </Form>
+        </Card.Body>
+      </Card>
     </div>
   );
 };

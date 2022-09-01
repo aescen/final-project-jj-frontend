@@ -1,9 +1,36 @@
+import { useState, useEffect } from 'react';
 import Avatar from 'react-avatar';
-import { useUser } from './../../../contexts/UserContext';
+import { useAuth, useUser } from './../../../contexts/Contexts';
 import wavey from '../../../assets/wave-bottom.svg';
+import { UsersHelper } from '../../../helpers';
 
 const ProfileCustomer = () => {
   const { user } = useUser();
+  const { auth } = useAuth();
+  const [vendor, setVendor] = useState({
+    vendorName: '',
+    bgExp: '',
+    linkedIn: '',
+  });
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (user && auth) {
+      const getVendor = async () => {
+        setIsLoading(true);
+        const result = await UsersHelper.getVendorById(
+          user.idVendor,
+          auth.accessToken,
+        );
+
+        setVendor(result.data);
+        setIsLoading(false);
+        console.log(result.data);
+      };
+
+      getVendor();
+    }
+  }, [user, auth]);
 
   return (
     <div className='min-vw-100'>
@@ -11,13 +38,13 @@ const ProfileCustomer = () => {
         <div
           className='position-absolute top-0 start-0'
           style={{
-            minHeight: '37vh',
+            height: '18em',
             width: '100vw',
             backgroundColor: '#373737',
           }}
         ></div>
         <div className='d-flex justify-content-center p-4'>
-          {user ? (
+          {!isLoading ? (
             <div className='card vw-75 mt-5 pd-5'>
               <div className='position-relative'>
                 <div
@@ -47,14 +74,23 @@ const ProfileCustomer = () => {
               </div>
 
               <div className='card-body'>
-                <h5 className='card-title'>
+                <h5 className='card-title fw-bold fs-4'>
                   {user.firstName + ' ' + user.lastName}
                 </h5>
-                <p className='card-text'>{user.email}</p>
+                <div className='mt-3 fs-5 fw-semibold'>Studio Name</div>
+                <div className='fs-5'>{vendor.vendorName}</div>
+                <div className='mt-3 fs-5 fw-semibold'>Email</div>
+                <div className='fs-5'>{user.email}</div>
+                <div className='mt-3 fs-5 fw-semibold'>LinkedIn</div>
+                <a href={vendor.linkedIn} className='fs-5 text-decoration-none'>
+                  {vendor.linkedIn}
+                </a>
+                <div className='mt-3 fs-5 fw-semibold'>Bio</div>
+                <div className='fs-5'>{vendor.bgExp}</div>
               </div>
             </div>
           ) : (
-            <div className='display-5'>No data</div>
+            <div className='display-5'>Loading</div>
           )}
         </div>
       </div>

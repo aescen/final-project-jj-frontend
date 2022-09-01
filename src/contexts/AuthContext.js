@@ -25,6 +25,7 @@ const authReducer = (state, action) => {
       return state;
     case LOGOUT:
       localStorage.removeItem(ACCESS_TOKEN);
+      localStorage.removeItem(AUTHENTICATED);
       localStorage.setItem(AUTHENTICATED, action.payload.isAuthenticated);
       return {
         isAuthenticated: action.payload.isAuthenticated,

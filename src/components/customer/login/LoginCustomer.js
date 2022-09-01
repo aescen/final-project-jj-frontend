@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Card } from 'react-bootstrap';
 import { LoginHelper } from '../../../helpers';
 import { useAuth, useUser } from '../../../contexts/Contexts';
 import { LOGIN, SET_USER } from '../../../contexts/ContextConsts';
@@ -94,67 +94,71 @@ const LoginCustomer = () => {
         handleClose={handleCloseAlert}
       />
       <Toast show={isLoading} loading={isLoading} />
-      <h1>Login</h1>
-      <Form className='mt-5'>
-        <div className='text-start'>
-          <hr />
-          <Form.Group className='mb-3' controlId='formEmail'>
-            <Form.Label>
-              <h4>Email</h4>
-            </Form.Label>
-            <Form.Control
-              type='email'
-              placeholder='Enter email'
-              name='email'
-              onChange={(ev) => handleChange(ev)}
-              onKeyPress={(ev) => handleKeyPress(ev)}
-            />
-          </Form.Group>
-          <p className='text-danger'>{formError.email}</p>
+      <Card className='my-5' style={{ minWidth: '32em' }}>
+        <Card.Body>
+          <div className='display-6 fw-semibold'>Login</div>
+          <Form className='mt-5'>
+            <div className='text-start'>
+              <hr />
+              <Form.Group className='mb-3' controlId='formEmail'>
+                <Form.Label>
+                  <h5>Email</h5>
+                </Form.Label>
+                <Form.Control
+                  type='email'
+                  placeholder='Enter email'
+                  name='email'
+                  onChange={(ev) => handleChange(ev)}
+                  onKeyPress={(ev) => handleKeyPress(ev)}
+                />
+              </Form.Group>
+              <p className='text-danger'>{formError.email}</p>
 
-          <Form.Group className='mb-3' controlId='formPassword'>
-            <Form.Label>
-              <h4>Password</h4>
-            </Form.Label>
-            <Form.Control
-              type={showPass ? 'text' : 'password'}
-              placeholder='Enter password'
-              name='password'
-              onChange={(ev) => handleChange(ev)}
-              onKeyPress={(ev) => handleKeyPress(ev)}
-            />
-          </Form.Group>
-          <p className='text-danger'>{formError.password}</p>
+              <Form.Group className='mb-3' controlId='formPassword'>
+                <Form.Label>
+                  <h5>Password</h5>
+                </Form.Label>
+                <Form.Control
+                  type={showPass ? 'text' : 'password'}
+                  placeholder='Enter password'
+                  name='password'
+                  onChange={(ev) => handleChange(ev)}
+                  onKeyPress={(ev) => handleKeyPress(ev)}
+                />
+              </Form.Group>
+              <p className='text-danger'>{formError.password}</p>
 
-          <Form.Group className='mb-3' controlId='formCheckbox'>
-            <Form.Check
-              type='checkbox'
-              label='Show password'
-              onChange={showPassword}
-              checked={showPass}
-            />
-          </Form.Group>
-          <hr />
-        </div>
+              <Form.Group className='mb-3' controlId='formCheckbox'>
+                <Form.Check
+                  type='checkbox'
+                  label='Show password'
+                  onChange={showPassword}
+                  checked={showPass}
+                />
+              </Form.Group>
+              <hr />
+            </div>
 
-        <div className='text-start'>
-          <p>
-            New user?&nbsp;
-            <span>
-              <Link to='/register'>Register</Link>
-            </span>
-          </p>
-        </div>
+            <div className='text-start'>
+              <p>
+                New user?&nbsp;
+                <span>
+                  <Link to='/register'>Register</Link>
+                </span>
+              </p>
+            </div>
 
-        <Button
-          className='mt-3'
-          variant='dark'
-          type='submit'
-          onClick={handleSubmit}
-        >
-          Login
-        </Button>
-      </Form>
+            <Button
+              className='mt-3'
+              variant='dark'
+              type='submit'
+              onClick={handleSubmit}
+            >
+              Login
+            </Button>
+          </Form>
+        </Card.Body>
+      </Card>
     </div>
   );
 };
