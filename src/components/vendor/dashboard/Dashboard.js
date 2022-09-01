@@ -4,11 +4,11 @@ import React from 'react';
 const Dashboard = () => {
   const navigate = useNavigate();
   return (
-    <div>
+    <div className='ms-sm-2 my-4'>
       <h2 className='display-3'>Dashboard</h2>
       <br />
       <br />
-      <div className='row justify-content-center me-5'>
+      <div className='row justify-content-center me-sm-5 mx-2 mx-sm-auto'>
         <div className='col-md-4 pt-2'>
           <div className='card crop-img '>
             <img
