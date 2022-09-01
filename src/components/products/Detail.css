@@ -1,0 +1,8 @@
+.detail-thumb {
+  cursor: pointer;
+  opacity: 0.73;
+}
+
+.detail-thumb:hover {
+  opacity: 1;
+}

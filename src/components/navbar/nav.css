@@ -1,0 +1,26 @@
+.nav-brand {
+  cursor: pointer;
+}
+
+#navbarScroll > div:nth-child(2) > div > a > div {
+  display: flex !important;
+}
+
+#navbar {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+}
+
+.drop-down-logged > a::after {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 1.5em;
+}
+
+@media (min-width: 992px) {
+  .drop-down-logged > a::after {
+    display: inherit !important;
+  }
+}
