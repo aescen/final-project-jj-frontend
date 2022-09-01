@@ -41,7 +41,7 @@ const getUserAvatar = (user) => {
 
 const Navbar = () => {
   const { auth, dispatch } = useAuth();
-  const { user = { role: '' }, userDispatch } = useUser();
+  const { user = { role: '' }, dispatch: userDispatch = () => {} } = useUser();
   const [showConfirm, setShowConfirm] = useState(false);
   const [confirmTitle] = useState('Confirm logout');
   const [confirmText, setConfirmText] = useState('');
@@ -51,17 +51,22 @@ const Navbar = () => {
     setConfirmText('Proceed to logout?');
     setShowConfirm(true);
   };
+
   const handleCloseConfirm = () => setShowConfirm(false);
   const handleShowConfirm = () => setShowConfirm(true);
   const handleConfirmConfirm = () => {
-    dispatch({
-      type: LOGOUT,
-    });
     userDispatch({
       type: DELETE_USER,
+      payload: {},
+    });
+    dispatch({
+      type: LOGOUT,
+      payload: { isAuthenticated: false, accessToken: null },
     });
     setShowConfirm(false);
+    sessionStorage.clear();
     navigate('/login');
+    window.location.reload(0);
   };
   return (
     <div id='navbar'>

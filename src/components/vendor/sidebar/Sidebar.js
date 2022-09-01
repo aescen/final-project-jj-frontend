@@ -29,7 +29,7 @@ const Sidebar = () => {
           <span className='ms-2 d-none d-md-inline'>Sales Report</span>
         </h5>
       </Nav.Link>
-      <Nav.Link className='nav-link px-3' href='/'>
+      <Nav.Link className='nav-link px-3' href='/vendor-settings'>
         <h5 className='d-flex align-items-center'>
           <i className='bi bi-gear-fill' />
           <span className='ms-2 d-none d-md-inline'>Settings</span>

@@ -10,7 +10,7 @@ const Dashboard = () => {
       <br />
       <div className='row justify-content-around me-sm-5 mx-2 mx-sm-auto'>
         <div className='col-md-4 pt-2'>
-          <div className='card crop-img '>
+          <div className='card crop-img shadow-sm'>
             <img
               src='https://siuntung.com/wp-content/uploads/2019/04/Desain-Denah-Rumah-Sederhana-dengan-3-Kamar-Tidur.jpg'
               alt='rumah'
@@ -26,7 +26,7 @@ const Dashboard = () => {
           </div>
         </div>
         <div className='col-md-4 pt-2'>
-          <div className='card crop-img'>
+          <div className='card crop-img shadow-sm'>
             <img
               src='https://siuntung.com/wp-content/uploads/2019/04/Desain-Denah-Rumah-Sederhana-dengan-3-Kamar-Tidur.jpg'
               alt='rumah'

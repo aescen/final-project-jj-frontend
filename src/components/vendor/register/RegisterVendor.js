@@ -90,7 +90,7 @@ const RegisterCustomer = () => {
       <Toast show={isLoading} loading={isLoading} />
       <Card className='my-5' style={{ minWidth: '32em' }}>
         <Card.Body>
-          <div className='fw-semibold fs-3 mt-3'>Register Your Studio</div>
+          <div className='fw-semibold fs-3 mt-3'>Register Your Vendor</div>
           <Form className='mt-3'>
             <div className='text-start'>
               <hr />
@@ -218,7 +218,7 @@ const RegisterCustomer = () => {
               type='submit'
               onClick={handleSubmit}
             >
-              Register Studio
+              Register Vendor
             </Button>
           </Form>
         </Card.Body>

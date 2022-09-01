@@ -120,10 +120,10 @@ const Home = () => {
                 bergabunglah bersama kami
               </p>
               <span
-                onClick={() => navigate('vendor-registration')}
+                onClick={() => navigate('vendor-join')}
                 className='btn btn-outline-secondary btn-lg border'
               >
-                Register Vendor
+                More Info
               </span>
             </div>
           </div>

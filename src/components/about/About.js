@@ -40,38 +40,58 @@ const About = () => {
       >
         <h4 className='my-3 text-center'>Team Kami </h4>
         <div className='row text-center mt-5'>
-          <div className='col-12 col-md-4 col-sm-6 col-lg-auto'>
+          <div className='col-12 col-md-4 col-sm-6 col-lg-2'>
             <img
               src={kAri}
-              height='120'
               alt='ari'
               className='shadow-lg'
+              style={{ height: '10em' }}
             />
             <p className='fs-6 fw-semibold mt-2'>Arrie Bhaskara</p>
           </div>
-          <div className='col-12 col-md-4 col-sm-6 col-lg-auto'>
-            <img src={kAesce} height='120' alt='aesce' className='shadow-lg' />
+          <div className='col-12 col-md-4 col-sm-6 col-lg-2'>
+            <img
+              src={kAesce}
+              style={{ height: '10em' }}
+              alt='aesce'
+              className='shadow-lg'
+            />
             <p className='fs-6 fw-semibold mt-2'>Ashadi Putra</p>
           </div>
-          <div className='col-12 col-md-4 col-sm-6 col-lg-auto'>
+          <div className='col-12 col-md-4 col-sm-6 col-lg-2'>
             <img
               src={kBaharudin}
-              height='120'
+              style={{ height: '10em' }}
               alt='bahar'
               className='shadow-lg'
             />
             <p className='fs-6 fw-semibold mt-2'>Baharudin Fahrul</p>
           </div>
-          <div className='col-12 col-md-4 col-sm-6 col-lg-auto'>
-            <img src={kakIna} height='120' alt='ina' className='shadow-lg' />
+          <div className='col-12 col-md-4 col-sm-6 col-lg-2'>
+            <img
+              src={kakIna}
+              style={{ height: '10em' }}
+              alt='ina'
+              className='shadow-lg'
+            />
             <p className='fs-6 fw-semibold mt-2'>Ina Septiana</p>
           </div>
-          <div className='col-12 col-md-4 col-sm-6 col-lg-auto'>
-            <img src={kAbrian} height='120' alt='brian' className='shadow-lg' />
+          <div className='col-12 col-md-4 col-sm-6 col-lg-2'>
+            <img
+              src={kAbrian}
+              style={{ height: '10em' }}
+              alt='brian'
+              className='shadow-lg'
+            />
             <p className='fs-6 fw-semibold mt-2'>Abriansyah</p>
           </div>
-          <div className='col-12 col-md-4 col-sm-6 col-lg-auto'>
-            <img src={kMirza} height='120' alt='mirza' className='shadow-lg' />
+          <div className='col-12 col-md-4 col-sm-6 col-lg-2'>
+            <img
+              src={kMirza}
+              style={{ height: '10em' }}
+              alt='mirza'
+              className='shadow-lg'
+            />
             <p className='fs-6 fw-semibold mt-2'>Mirza</p>
           </div>
         </div>

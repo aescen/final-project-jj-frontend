@@ -25,6 +25,7 @@ import DashboardVendor from './components/vendor/dashboard/DashboardVendor';
 import CollectionsVendor from './components/vendor/collections/CollectionsVendor';
 import DesignUpload from './components/vendor/designs/DesignUpload';
 import SalesReport from './components/vendor/sales/SalesReport';
+import Settings from './components/vendor/settings/Settings';
 
 function App() {
   return (
@@ -39,7 +40,7 @@ function App() {
             <Route
               path='/'
               element={
-                <ProtectedRoute userOnly={true} loginOnly={false}>
+                <ProtectedRoute userOnly={true} loginOnly={false} path='/'>
                   <Home />
                 </ProtectedRoute>
               }
@@ -47,7 +48,7 @@ function App() {
             <Route
               path='categories'
               element={
-                <ProtectedRoute userOnly={true} loginOnly={false}>
+                <ProtectedRoute userOnly={true} loginOnly={false} path='categories'>
                   <Categories />
                 </ProtectedRoute>
               }
@@ -55,7 +56,7 @@ function App() {
             <Route
               path='products/detail/:id'
               element={
-                <ProtectedRoute userOnly={true} loginOnly={false}>
+                <ProtectedRoute userOnly={true} loginOnly={false} path='products'>
                   <Detail />
                 </ProtectedRoute>
               }
@@ -65,7 +66,7 @@ function App() {
             <Route
               path='login'
               element={
-                <ProtectedRoute loginOnly={false}>
+                <ProtectedRoute loginOnly={false} path='login'>
                   <LoginCustomer />
                 </ProtectedRoute>
               }
@@ -73,7 +74,7 @@ function App() {
             <Route
               path='register'
               element={
-                <ProtectedRoute loginOnly={false}>
+                <ProtectedRoute loginOnly={false} path='register'>
                   <RegisterCustomer />
                 </ProtectedRoute>
               }
@@ -81,7 +82,7 @@ function App() {
             <Route
               path='profile'
               element={
-                <ProtectedRoute userOnly={true}>
+                <ProtectedRoute userOnly={true} path='profile'>
                   <ProfileCustomer />
                 </ProtectedRoute>
               }
@@ -89,7 +90,7 @@ function App() {
             <Route
               path='confirm-transaction'
               element={
-                <ProtectedRoute userOnly={true}>
+                <ProtectedRoute userOnly={true} path='confirm-transaction'>
                   <ConfirmTransaction />
                 </ProtectedRoute>
               }
@@ -97,7 +98,7 @@ function App() {
             <Route
               path='transactions'
               element={
-                <ProtectedRoute userOnly={true}>
+                <ProtectedRoute userOnly={true} path='transactions'>
                   <Transactions />
                 </ProtectedRoute>
               }
@@ -105,7 +106,7 @@ function App() {
             <Route
               path='transaction-status'
               element={
-                <ProtectedRoute userOnly={true}>
+                <ProtectedRoute userOnly={true} path='transaction-status'>
                   <TransactionStatus />
                 </ProtectedRoute>
               }
@@ -113,7 +114,7 @@ function App() {
             <Route
               path='orders-history'
               element={
-                <ProtectedRoute userOnly={true}>
+                <ProtectedRoute userOnly={true} path='orders-history'>
                   <OrdersHistory />
                 </ProtectedRoute>
               }
@@ -124,7 +125,7 @@ function App() {
             <Route
               path='vendor-login'
               element={
-                <ProtectedRoute loginOnly={false}>
+                <ProtectedRoute loginOnly={false} path='vendor-login'>
                   <LoginVendor />
                 </ProtectedRoute>
               }
@@ -132,7 +133,7 @@ function App() {
             <Route
               path='vendor-registration'
               element={
-                <ProtectedRoute loginOnly={false}>
+                <ProtectedRoute loginOnly={false} path='vendor-registration'>
                   <RegisterVendor />
                 </ProtectedRoute>
               }
@@ -140,7 +141,7 @@ function App() {
             <Route
               path='vendor-profile'
               element={
-                <ProtectedRoute vendorOnly={true}>
+                <ProtectedRoute vendorOnly={true} path='vendor-profile'>
                   <ProfileVendor />
                 </ProtectedRoute>
               }
@@ -148,7 +149,7 @@ function App() {
             <Route
               path='vendor-dashboard'
               element={
-                <ProtectedRoute vendorOnly={true}>
+                <ProtectedRoute vendorOnly={true} path='vendor-dashboard'>
                   <DashboardVendor />
                 </ProtectedRoute>
               }
@@ -156,7 +157,7 @@ function App() {
             <Route
               path='vendor-collections'
               element={
-                <ProtectedRoute vendorOnly={true}>
+                <ProtectedRoute vendorOnly={true} path='vendor-collections'>
                   <CollectionsVendor />
                 </ProtectedRoute>
               }
@@ -164,7 +165,7 @@ function App() {
             <Route
               path='vendor-design-upload'
               element={
-                <ProtectedRoute vendorOnly={true}>
+                <ProtectedRoute vendorOnly={true} path='vendor-design-upload'>
                   <DesignUpload />
                 </ProtectedRoute>
               }
@@ -172,8 +173,16 @@ function App() {
             <Route
               path='vendor-sales'
               element={
-                <ProtectedRoute vendorOnly={true}>
+                <ProtectedRoute vendorOnly={true} path='vendor-sales'>
                   <SalesReport />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path='vendor-settings'
+              element={
+                <ProtectedRoute vendorOnly={true} path='vendor-settings'>
+                  <Settings />
                 </ProtectedRoute>
               }
             />

@@ -94,6 +94,7 @@ function CreditDebitModal(props) {
         <Alert>
           <div>
             By choosing this payment method you accept our&nbsp;
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <a href='#'>privacy policy</a>. We will automatically verify your
             card info (automatic system).
           </div>
