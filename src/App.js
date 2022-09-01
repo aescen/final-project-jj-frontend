@@ -5,8 +5,6 @@ import Navbar from './components/navbar/Navbar';
 import Footer from './components/footer/Footer';
 import NotFoundImg from './assets/404.svg';
 import About from './components/about/About';
-import Description from './components/about/Description';
-import Services from './components/about/Services';
 import Home from './components/home/Home';
 import Categories from './components/categories/Categories';
 import Detail from './components/products/Detail';
@@ -14,7 +12,6 @@ import Detail from './components/products/Detail';
 import RegisterCustomer from './components/customer/register/RegisterCustomer';
 import LoginCustomer from './components/customer/login/LoginCustomer';
 import ProfileCustomer from './components/customer/profile/ProfileCustomer';
-import Cart from './components/customer/carts/Cart';
 import Transactions from './components/customer/transactions/Transactions';
 import ConfirmTransaction from './components/customer/transactions/ConfirmTransaction';
 import TransactionStatus from './components/customer/transactions/TransactionStatus';
@@ -37,10 +34,7 @@ function App() {
         <div className='App-content'>
           <Routes>
             <Route path='*' element={<NotFound />} />
-            <Route path='about' element={<About />}>
-              <Route path='description' element={<Description />} />
-              <Route path='services' element={<Services />} />
-            </Route>
+            <Route path='about' element={<About />} />
 
             <Route
               path='/'
@@ -97,14 +91,6 @@ function App() {
               element={
                 <ProtectedRoute userOnly={true}>
                   <ConfirmTransaction />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path='carts'
-              element={
-                <ProtectedRoute userOnly={true}>
-                  <Cart />
                 </ProtectedRoute>
               }
             />
