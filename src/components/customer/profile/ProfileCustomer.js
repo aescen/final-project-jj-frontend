@@ -15,7 +15,7 @@ const ProfileCustomer = () => {
         </div>
         <div className='d-flex justify-content-center p-4'>
           {user ? (
-            <div className='card vw-75 mt-5'>
+            <div className='card mt-5' style={{width: '32em'}}>
               <div className='position-relative'>
                 <div
                   className='card-img-top w-100 bg-secondary'

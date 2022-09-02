@@ -45,7 +45,7 @@ const ProfileCustomer = () => {
         ></div>
         <div className='d-flex justify-content-center p-4'>
           {!isLoading ? (
-            <div className='card vw-75 mt-5 pd-5'>
+            <div className='card mt-5' style={{width: '32em'}}>
               <div className='position-relative'>
                 <div
                   className='card-img-top w-100 bg-secondary'
@@ -86,7 +86,7 @@ const ProfileCustomer = () => {
                   {vendor.linkedIn}
                 </a>
                 <div className='mt-3 fs-5 fw-semibold'>Bio</div>
-                <div className='fs-5'>{vendor.bgExp}</div>
+                <div className='fs-5 text-break'>{vendor.bgExp}</div>
               </div>
             </div>
           ) : (
