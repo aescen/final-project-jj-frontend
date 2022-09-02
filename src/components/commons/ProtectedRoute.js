@@ -54,7 +54,19 @@ const ProtectedRoute = ({
     return <Navigate to='/' />;
   }
 
-  if (auth.isAuthenticated && loginOnly && userOnly && user.role === 'vendor') {
+  if (
+    auth.isAuthenticated &&
+    userOnly &&
+    user.role === 'vendor' &&
+    (path === '/' ||
+      'categories' ||
+      'products' ||
+      'transactions' ||
+      'profile' ||
+      'confirm-transaction' ||
+      'transaction-status' ||
+      'orders-history')
+  ) {
     console.log(`Element '${children.type.name}' is user only.`);
     console.log('to vendor-dashboard');
     return <Navigate to='/vendor-dashboard' />;
