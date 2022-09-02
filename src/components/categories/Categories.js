@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ProductsHelper } from '../../helpers';
 import { getCategoriesFromProducts, getProductsFromCategory } from './service';
+import './Categories.css';
 
 const Categories = () => {
   const navigate = useNavigate();
@@ -70,7 +71,9 @@ const Categories = () => {
                     />
                     <div className='card-body'>
                       <h5 className='card-title'>{item.productName}</h5>
-                      <p className='card-text'>{item.productDescription}</p>
+                      <p className='card-text card-desc-text'>
+                        {item.productDescription}
+                      </p>
                       <button
                         type='button'
                         className='btn btn-secondary'
