@@ -1,4 +1,5 @@
 import React from 'react';
+import './Collection.css'
 
 const CollectionItem = ({ product }) => {
   return (
@@ -13,7 +14,7 @@ const CollectionItem = ({ product }) => {
         />
         <div className='card-body'>
           <h5 className='card-title'>{product.productName}</h5>
-          <p className='card-text'>{product.productDescription}</p>
+          <p className='card-text card-desc-text'>{product.productDescription}</p>
         </div>
       </div>
     </div>
