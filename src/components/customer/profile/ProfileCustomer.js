@@ -15,7 +15,7 @@ const ProfileCustomer = () => {
         </div>
         <div className='d-flex justify-content-center p-4'>
           {user ? (
-            <div className='card mt-5' style={{width: '32em'}}>
+            <div className='card my-5' style={{width: '24em'}}>
               <div className='position-relative'>
                 <div
                   className='card-img-top w-100 bg-secondary'
@@ -37,7 +37,7 @@ const ProfileCustomer = () => {
                 ) : (
                   <Avatar
                     name={user.firstName + ' ' + user.lastName}
-                    size='14em'
+                    size='12em'
                     className='rounded-circle position-absolute top-50 start-50 translate-middle'
                   />
                 )}
